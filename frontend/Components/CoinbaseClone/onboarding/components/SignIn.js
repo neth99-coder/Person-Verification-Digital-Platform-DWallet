@@ -8,30 +8,28 @@ import {
   Image,
   TextInput,
 } from 'react-native';
-import SignupLogo from '../../../../signup.jpg';
-import {useMoralis} from 'react-moralis';
-import Button from '../../onboarding/components/Button';
 
-const CreateUsername = ({navigation}) => {
+import Login from '../../../../login.png';
+import {useMoralis} from 'react-moralis';
+// import Button from '../../onboarding/components/Button';
+
+const SignIn = ({navigation}) => {
   return (
     <SafeAreaView style={styles.mainBody}>
       <View style={{marginTop: 10, flex: 1}}>
         <View style={{alignSelf: 'center'}}>
-          <Image
-            source={SignupLogo}
-            style={{width: 330, height: 250, marginRight: 8}}
-          />
-          <View style={{marginTop: 10}}>
+          <Image source={Login}></Image>
+          <View style={{marginTop: 40}}>
             <Text
               style={{
                 fontFamily: 'Kiwi Maru',
                 fontWeight: '400',
-                fontSize: 13,
+                fontSize: 17,
                 color: 'rgb(50,30,99)',
                 textAlign: 'center',
                 marginBottom: 12,
               }}>
-              Pick your username and password
+              Enter your username and password
             </Text>
           </View>
           <View>
@@ -41,11 +39,7 @@ const CreateUsername = ({navigation}) => {
             <TextInput
               placeholder="Passowrd"
               style={styles.inputField}></TextInput>
-            <TextInput
-              placeholder="Confirm Password"
-              style={styles.inputField}></TextInput>
           </View>
-
           <TouchableOpacity
             style={{
               backgroundColor: '#1652F0',
@@ -65,7 +59,7 @@ const CreateUsername = ({navigation}) => {
   );
 };
 
-export default CreateUsername;
+export default SignIn;
 
 const styles = StyleSheet.create({
   mainBody: {

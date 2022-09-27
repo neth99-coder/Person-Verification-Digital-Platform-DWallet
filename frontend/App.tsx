@@ -6,6 +6,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import Onboarding from "./Components/CoinbaseClone/onboarding/Onboarding";
 import CreateUsername from './Components/CoinbaseClone/onboarding/components/CreateUsername'
+import SignIn from './Components/CoinbaseClone/onboarding/components/SignIn'
 
 const Stack = createStackNavigator();
 
@@ -24,6 +25,13 @@ function App(): JSX.Element {
           options={{ headerShown: true, headerStyle: {
             shadowColor:'transparent'
           }, headerTitle: '', headerBackTitle:'Back' }}
+        />
+        <Stack.Screen
+          name="SignIn"
+          component={SignIn}
+          options={{ headerShown: true, headerStyle: {
+            shadowColor: 'transparent'
+          },headerTitle: '', headerBackTitle: 'Back' }}
         />
       </Stack.Navigator>
     </NavigationContainer>

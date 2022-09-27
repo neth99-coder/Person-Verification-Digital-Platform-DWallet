@@ -48,7 +48,8 @@ const SignIn = ({navigation}) => {
               alignSelf: 'center',
               borderRadius: 8,
               marginTop: 10,
-            }}>
+            }}
+            onPress={() => navigation.push('Home')}>
             <Text style={{alignSelf: 'center', paddingTop: 10, color: '#fff'}}>
               Next
             </Text>

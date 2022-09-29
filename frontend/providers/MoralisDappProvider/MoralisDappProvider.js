@@ -1,9 +1,9 @@
-import React, {useEffect, useMemo, useState} from 'react';
-import {useMoralis} from 'react-moralis';
+import React, { useEffect, useMemo, useState } from 'react';
+import { useMoralis } from 'react-moralis';
 import MoralisDappContext from './context';
 
-function MoralisDappProvider({children}) {
-  const {web3, Moralis, user} = useMoralis();
+function MoralisDappProvider({ children }) {
+  const { web3, Moralis, user } = useMoralis();
   const [walletAddress, setWalletAddress] = useState();
   const [chainId, setChainId] = useState();
   useEffect(() => {
@@ -37,7 +37,7 @@ function MoralisDappProvider({children}) {
     // </MoralisDappContext.Provider>
 
     //USE THIS DURING PRODUCTION
-    <MoralisDappContext.Provider value={{walletAddress, chainId: '0x1'}}>
+    <MoralisDappContext.Provider value={{ walletAddress, chainId: '0x1' }}>
       {children}
     </MoralisDappContext.Provider>
   );
@@ -51,4 +51,4 @@ function useMoralisDapp() {
   return context;
 }
 
-export {MoralisDappProvider, useMoralisDapp};
+export { MoralisDappProvider, useMoralisDapp };

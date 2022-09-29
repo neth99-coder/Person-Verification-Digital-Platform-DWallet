@@ -9,6 +9,7 @@ import {
   SafeAreaView,
   ScrollView,
   Text,
+  TouchableOpacity,
 } from "react-native";
 import NativeBalance from "./NativeBalance";
 import ERC20Balance from "./ERC20Balance";
@@ -23,25 +24,14 @@ export default function Assets() {
     <SafeAreaView style={[StyleSheet.absoluteFill, styles.container]}>
       <ScrollView>
         <View style={styles.viewContainer}>
-          <Text style={styles.headerText} category="h4">
-            🏦 Assets
-          </Text>
 
-          <Text style={styles.chainText} category="c2">
-            Ethereum
-          </Text>
-          <NativeBalance chain="0x1" />
-          <ERC20Balance></ERC20Balance>
-          <Text style={styles.chainText} category="c2">
-            Binance Smart Chain
-          </Text>
-          <NativeBalance chain="0x38" />
-          <ERC20Balance chain="0x38"></ERC20Balance>
-          <Text style={styles.chainText} category="c2">
-            Polygon Chain
-          </Text>
-          <NativeBalance chain="0x89" />
-          <ERC20Balance chain="0x89"></ERC20Balance>
+          <View style={styles.countContainer}>
+            <TouchableOpacity
+              style={styles.button}
+            >
+              <Text>Scan QR</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -72,4 +62,14 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     flex: 10,
   },
+  button: {
+    alignItems: "center",
+    backgroundColor: "#DDDDDD",
+    padding: 40,
+   
+  },
+  countContainer: {
+    alignItems: "center",
+    padding: 10
+  }
 });

@@ -1,4 +1,5 @@
 {
-  "name": "EthereumRNBoilerplate",
-  "displayName": "EthereumRNBoilerplate"
+  "name": "WcTestApp",
+  "displayName": "WcTestApp",
+  "scheme": "myapp"
 }

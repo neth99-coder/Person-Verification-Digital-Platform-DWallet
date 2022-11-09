@@ -1,27 +1,21 @@
 const contract = require('@truffle/contract');
-import AuthVerifier from '../public/contracts/AuthVerifier.json';
-const contractArtifact = require('../public/contracts/AuthVerifier.json');
-import web3 from 'web3';
+const AuthWalletArtifact = require('../public/contracts/AuthWallet.json');
+const AuthVerifierArtifact = require('../public/contracts/AuthVerifier.json');
+
+import Web3 from 'web3';
 
 export const loadContracts = async (name, provider) => {
-  console.log('inside load contract', provider);
-  // const res = await fetch(`../public/contracts/AuthVerifier.json`);
-  // const Artifact = await res.json();
-  const _contract = contract(contractArtifact);
-  _contract.setProvider(provider);
+  console.log('inside load contract');
+  const _contract = contract(AuthWalletArtifact);
+  await _contract.setProvider(provider);
   console.log('contract', _contract);
-  // console.log("ddd")
   const contract_address = '0xb9F3312CE266C7a4B70ddFb2A5b476C59F32A93F';
-  const instance = await web3.eth.contract(_contract.abi, contract_address);
-  console.log(instance);
-  // const instance = await _contract.at(contract_address);
-  try {
-    console.log(instance);
-  } catch (err) {
-    console.log(err);
-  }
+  var web3 = new Web3(
+    new Web3.providers.HttpProvider('http://192.168.1.2:7545/'),
+  );
+  const instance = new web3.eth.Contract(_contract.abi, contract_address);
+  instance.setProvider(provider);
+  console.log('instance', instance);
 
-  // const deployedContract = await _contract.deployed();
-  // console.log('hi', deployedContract);
-  // return deployedContract;
+  return instance;
 };

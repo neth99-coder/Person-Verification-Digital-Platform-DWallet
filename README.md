@@ -30,9 +30,14 @@ verification purposes</h6>
 <h6>Do "cd ios" and then do "pod install"</h6>
 <h6>open xcode by chosing ios folder, build and run while your iphone connected</h6>
 
+
 </p>
 
 ---
+<p align="center">
+<img src="https://user-images.githubusercontent.com/73867299/202850319-ef396de4-ba52-40c7-a46c-305a48567131.jpeg" >
+<h1 align="center">Person Verification Digital Platform - DWallet Mobile Application</h1>
+</p>
 
 
 

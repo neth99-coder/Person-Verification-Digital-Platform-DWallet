@@ -1,41 +1,45 @@
-# WalletConnect Example with React-Native-CLI
+<p align="center">
+<img src="https://res.cloudinary.com/dunrf5nc7/image/upload/v1668758979/logo_yhjjeb.png" >
+<h1 align="center">Person Verification Digital Platform - DWallet Mobile Application</h1>
+</p>
 
-This is a simple example how to get `WalletConnect` up and running with `React-Native-CLI` for React Native.
+---
 
-## `WalletConnect`'s dependency on Node's `crypto` package
+<p>
+<h3>Description:</h3>
+<h6>This repositary contains all the code related to the DWallet mobile app</h6>
+<h6>The mobile app will be used to store digital id into blockchain and to retrieve digital id from blockchain for 
+verification purposes</h6>
+<h6>Current we only focusing on ios development</h6>
+<h6>check branch "final-1" for most recent changes</h6>
 
-`WalletConnect` uses node's built-in crypto package which is not available on iOS or Android.
-In order to work around this we can use `metro.config.js` to create aliases for different packages, this idea is from [here](https://learn.figment.io/tutorials/how-to-successfully-connect-to-a-celo-wallet-with-a-react-native-dapp).
-This will allow us to use `WalletConnect` directly from the `expo` client without having to eject the application.
+</p>
 
-See [here](https://github.com/clxyder/walletconnect-expo-example) on how to run this with `Expo`.
+---
 
-## Getting Started
+<p>
+<h3>Prerequisites:</h3>
+<ul>
+<li>CocoaPods</li>
+<li>Yarn</li>
+</ul>
+</p>
 
-Please go ahead and install the packages via `yarn install`, then, run `yarn start`.
+---
+<p>
+<h3>Install Packages:</h3>
+<h6>Do "yarn install" on root folder</h6>
+<h6>Do "cd ios" and then do "pod install"</h6>
+<h6>open xcode by chosing ios folder, build and run while your iphone connected</h6>
 
-### Android
 
-From `Android Studio` open the `android` directory, wait for the build to complete.
-Once complete, go ahead and press the green play button to have an android emulator launch (See [here](https://developer.android.com/studio/run/emulator) for emulator setup).
+</p>
 
-Once the build is complete and opened in the app, connect your wallet by pressing the `Connect a wallet` button.
+---
+<p align="center">
+<img src="https://user-images.githubusercontent.com/73867299/202850319-ef396de4-ba52-40c7-a46c-305a48567131.jpeg" width="300px">
+</p>
 
-### iOS
 
-Not tested, as I don't have a mac to test this with XCode.
 
-## ⚠️⚠️⚠️ Needs more work ⚠️⚠️⚠️
 
-As one can see from the demo gif, the connect functionality is not complete. This is because deep linking has not been configured correctly. If you have the time, please see the following links and open a PR to try and fix this.
-
-* [Create Deep Links to App Content](https://developer.android.com/training/app-links/deep-linking)
-* [Expo Linking](https://docs.expo.dev/guides/linking/?redirected#linking-to-your-app)
-
-## ✅✅✅ Work Around ✅✅✅
-
-A work around for this issue can be found [here](https://github.com/cawfree/create-react-native-dapp/issues/30#issuecomment-1095025847).
-
-## Demo GIF
-
-![alt text](./assets/walletconnect-react-native-demo.gif)

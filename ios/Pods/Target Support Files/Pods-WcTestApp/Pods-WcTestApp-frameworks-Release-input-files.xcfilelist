@@ -1,1 +1,2 @@
 ${PODS_ROOT}/Target Support Files/Pods-WcTestApp/Pods-WcTestApp-frameworks.sh
+${PODS_ROOT}/DynamsoftBarcodeReader/DynamsoftBarcodeReader.framework

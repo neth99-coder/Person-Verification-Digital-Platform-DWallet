@@ -1,1 +1,5 @@
 node_modules
+/ios/build/
+/ios/Pods/
+/ios/Podfile.lock
+/packages/rn-tester/Gemfile.lock

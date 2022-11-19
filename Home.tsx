@@ -20,6 +20,7 @@ import {
   Image,
   TouchableOpacity,
   Alert,
+  useWindowDimensions,
 } from "react-native";
 
 import { Colors, Header } from "react-native/Libraries/NewAppScreen";
@@ -86,6 +87,8 @@ const Home = ({ navigation }) => {
   }, [connector]);
 
   const killSession = React.useCallback(() => {
+    setContract(null);
+    setSigner(null);
     return connector.killSession();
   }, [connector]);
 
@@ -151,10 +154,8 @@ const Home = ({ navigation }) => {
   };
 
   // useEffect(() => {
-  //   if (!contract?.signer) {
-  //     setUpSigner();
-  //   }
-  // }, []);
+  //   setUpSigner();
+  // }, [connector]);
 
   return (
     <SafeAreaView>

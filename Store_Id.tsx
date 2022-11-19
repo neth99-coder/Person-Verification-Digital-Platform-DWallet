@@ -86,7 +86,7 @@ export default function App({ navigation }) {
           }}
           style={styles.buttonStyle}
         >
-          <Text style={styles.buttonTextStyle}>Verify</Text>
+          <Text style={styles.buttonTextStyle}>Store Id</Text>
         </TouchableOpacity>
       </>
     )

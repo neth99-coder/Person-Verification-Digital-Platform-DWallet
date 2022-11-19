@@ -124,7 +124,6 @@ const Home = ({ navigation }) => {
   };
 
   const viewId = async () => {
-    console.log(contract, signer);
     try {
       const res = await contract.sendCreadentials();
       const originalText = cryptoConverter.decrypt(res);
@@ -151,11 +150,11 @@ const Home = ({ navigation }) => {
     }
   };
 
-  useEffect(() => {
-    if (connector.connected) {
-      setUpSigner();
-    }
-  }, [connector]);
+  // useEffect(() => {
+  //   if (!contract?.signer) {
+  //     setUpSigner();
+  //   }
+  // }, []);
 
   return (
     <SafeAreaView>
@@ -202,45 +201,64 @@ const Home = ({ navigation }) => {
                 >
                   Your Account :{shortenAddress(connector.accounts[0])}
                 </Text>
+                {!contract?.signer && (
+                  <TouchableOpacity
+                    onPress={async () => {
+                      await setUpSigner();
+                    }}
+                    style={styles.buttonStyle}
+                  >
+                    <Text style={styles.buttonTextStyle}>Setup & Go</Text>
+                  </TouchableOpacity>
+                )}
 
-                <TouchableOpacity
-                  onPress={async () => {
-                    await createAccount();
-                  }}
-                  style={styles.buttonStyle}
-                >
-                  <Text style={styles.buttonTextStyle}>Create Account</Text>
-                </TouchableOpacity>
+                {!!contract?.signer && (
+                  <>
+                    <TouchableOpacity
+                      onPress={async () => {
+                        await createAccount();
+                      }}
+                      style={styles.buttonStyle}
+                    >
+                      <Text style={styles.buttonTextStyle}>Create Account</Text>
+                    </TouchableOpacity>
 
-                <TouchableOpacity
-                  onPress={async () => {
-                    navigation.navigate("StoreId", { contract: contract });
-                  }}
-                  style={styles.buttonStyle}
-                >
-                  <Text style={styles.buttonTextStyle}>StoreId</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  onPress={async () => {
-                    await viewId();
-                  }}
-                  style={styles.buttonStyle}
-                >
-                  <Text style={styles.buttonTextStyle}>View ID</Text>
-                </TouchableOpacity>
+                    <TouchableOpacity
+                      onPress={async () => {
+                        navigation.navigate("StoreId", { contract: contract });
+                      }}
+                      style={styles.buttonStyle}
+                    >
+                      <Text style={styles.buttonTextStyle}>StoreId</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      onPress={async () => {
+                        try {
+                          await viewId();
+                        } catch (error) {
+                          console.log("error", error);
+                        }
+                      }}
+                      style={styles.buttonStyle}
+                    >
+                      <Text style={styles.buttonTextStyle}>View ID</Text>
+                    </TouchableOpacity>
 
-                <TouchableOpacity
-                  onPress={async () => {
-                    // await setUpSigner();
-                    navigation.navigate("VerifyId", {
-                      user_contract: contract,
-                      signer: signer,
-                    });
-                  }}
-                  style={styles.buttonStyle}
-                >
-                  <Text style={styles.buttonTextStyle}>Verify ID</Text>
-                </TouchableOpacity>
+                    <TouchableOpacity
+                      onPress={async () => {
+                        // await setUpSigner();
+                        navigation.navigate("VerifyId", {
+                          user_contract: contract,
+                          signer: signer,
+                        });
+                      }}
+                      style={styles.buttonStyle}
+                    >
+                      <Text style={styles.buttonTextStyle}>Verify ID</Text>
+                    </TouchableOpacity>
+                  </>
+                )}
+
                 <TouchableOpacity
                   onPress={killSession}
                   style={styles.logoutButtonStyle}

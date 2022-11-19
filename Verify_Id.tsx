@@ -65,21 +65,23 @@ export default function App({ navigation }) {
         if (res) {
           await retrieveId();
           //todo call bank api
-          axios
-            .post(api_url, {
-              id: id,
-            })
-            .then(function (response) {
-              console.log(response.data);
-              if (response.data == "failed") {
-                Alert.alert("Try Again");
-              } else {
-                Alert.alert(`done`);
-              }
-            })
-            .catch(function (error) {
-              console.log(error);
-            });
+          if (id != "") {
+            axios
+              .post(api_url, {
+                id: id,
+              })
+              .then(function (response) {
+                console.log(response.data);
+                if (response.data == "failed") {
+                  Alert.alert("Try Again");
+                } else {
+                  Alert.alert(`done`);
+                }
+              })
+              .catch(function (error) {
+                console.log(error);
+              });
+          }
         } else {
           Alert.alert("Verifier not registered for account creation");
         }
@@ -94,21 +96,23 @@ export default function App({ navigation }) {
         if (res) {
           await retrieveId();
           //todo call bank api
-          axios
-            .post(api_url, {
-              id: id,
-            })
-            .then(function (response) {
-              console.log(response.data);
-              if (response.data == "failed") {
-                Alert.alert("Try Again");
-              } else {
-                Alert.alert(`done`);
-              }
-            })
-            .catch(function (error) {
-              console.log(error);
-            });
+          if (id) {
+            axios
+              .post(api_url, {
+                id: id,
+              })
+              .then(function (response) {
+                console.log(response.data);
+                if (response.data == "failed") {
+                  Alert.alert("Try Again");
+                } else {
+                  Alert.alert(`done`);
+                }
+              })
+              .catch(function (error) {
+                console.log(error);
+              });
+          }
         } else {
           Alert.alert("Verifier not registered for loan");
         }
@@ -122,22 +126,24 @@ export default function App({ navigation }) {
         res = await verifier_contract.isCardRequestVerifiable(address);
         if (res) {
           await retrieveId();
+          if (id) {
+            axios
+              .post(api_url, {
+                id: id,
+              })
+              .then(function (response) {
+                console.log(response.data);
+                if (response.data == "failed") {
+                  Alert.alert("Try Again");
+                } else {
+                  Alert.alert(`done`);
+                }
+              })
+              .catch(function (error) {
+                console.log(error);
+              });
+          }
           //todo call bank api
-          axios
-            .post(api_url, {
-              id: id,
-            })
-            .then(function (response) {
-              console.log(response.data);
-              if (response.data == "failed") {
-                Alert.alert("Try Again");
-              } else {
-                Alert.alert(`done`);
-              }
-            })
-            .catch(function (error) {
-              console.log(error);
-            });
         } else {
           Alert.alert("Verifier not registered for cards");
         }

@@ -68,12 +68,16 @@ export default function App({ navigation }) {
         <TouchableOpacity
           onPress={() => {
             if (barcodes[0]) {
-              const originalText = cryptoConverter.decrypt(
-                barcodes[0].displayValue
-              );
-              if (originalText.split("|").pop() == REACT_APP_SECRET) {
-                storeId(barcodes[0].displayValue);
-              } else {
+              try {
+                const originalText = cryptoConverter.decrypt(
+                  barcodes[0].displayValue
+                );
+                if (originalText.split("|").pop() == REACT_APP_SECRET) {
+                  storeId(barcodes[0].displayValue);
+                } else {
+                  Alert.alert("Invalid ID");
+                }
+              } catch (error) {
                 Alert.alert("Invalid ID");
               }
             } else {

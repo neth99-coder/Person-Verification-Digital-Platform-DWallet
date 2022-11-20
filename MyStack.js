@@ -1,8 +1,8 @@
 import { createStackNavigator } from "react-navigation-stack";
 import { createAppContainer } from "react-navigation";
-import Home from "./Home";
-import StoreId from "./Store_Id";
-import VerifyId from "./Verify_Id";
+import Home from "./screens/Home";
+import StoreId from "./screens/Store_Id";
+import VerifyId from "./screens/Verify_Id";
 
 const screens = {
   Home: {

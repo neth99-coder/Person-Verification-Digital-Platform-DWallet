@@ -25,7 +25,7 @@ import {
 
 import { Colors, Header } from "react-native/Libraries/NewAppScreen";
 
-import { scheme } from "./app.json";
+import { scheme } from "../app.json";
 
 import {
   useWalletConnect,
@@ -33,11 +33,9 @@ import {
 } from "@walletconnect/react-native-dapp";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import WalletConnectProvider from "@walletconnect/web3-provider";
-import { loadContracts } from "./utils/load-contracts";
-import cryptoConverter from "./utils/crypto-converter";
-import Web3 from "web3";
-import { ethers, providers } from "ethers";
-import StoreId from "./StoreId";
+import { loadContracts } from "../utils/load-contracts";
+import cryptoConverter from "../utils/crypto-converter";
+import { ethers } from "ethers";
 const shortenAddress = (address: string) => {
   return `${address.slice(0, 6)}...${address.slice(
     address.length - 4,
@@ -76,6 +74,8 @@ const Section: React.FC<{
 
 const Home = ({ navigation }) => {
   const [contract, setContract] = useState(null);
+  const [verifierContract, setVerifierContract] = useState(null);
+
   const [signer, setSigner] = useState(null);
 
   // const isDarkMode = useColorScheme() === "dark";
@@ -105,11 +105,13 @@ const Home = ({ navigation }) => {
     const ethers_provider = new ethers.providers.Web3Provider(provider);
     const signer = await ethers_provider.getSigner();
     setSigner(signer);
+
     await loadProvider();
   };
 
   const loadProvider = async () => {
     await loadContracts("AuthWallet", setContract, signer);
+    await loadContracts("AuthVerifier", setVerifierContract, signer);
   };
 
   const createAccount = async () => {
@@ -179,7 +181,7 @@ const Home = ({ navigation }) => {
                   Welcome to DWallet
                 </Text>
                 <Image
-                  source={require("./assets/logo.png")}
+                  source={require("../assets/logo.png")}
                   resizeMode={"center"}
                   style={styles.startImg}
                 />
@@ -251,6 +253,7 @@ const Home = ({ navigation }) => {
                         navigation.navigate("VerifyId", {
                           user_contract: contract,
                           signer: signer,
+                          verifier_contract: verifierContract,
                         });
                       }}
                       style={styles.buttonStyle}

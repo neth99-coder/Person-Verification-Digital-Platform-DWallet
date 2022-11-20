@@ -5,8 +5,7 @@ import { StyleSheet, Text, Alert, TouchableOpacity } from "react-native";
 import { useCameraDevices } from "react-native-vision-camera";
 import { Camera } from "react-native-vision-camera";
 import { useScanBarcodes, BarcodeFormat } from "vision-camera-code-scanner";
-import { loadContracts } from "./utils/load-contracts";
-import cryptoConverter from "./utils/crypto-converter";
+import cryptoConverter from "../utils/crypto-converter";
 import { REACT_APP_SECRET } from "@env";
 
 export default function App({ navigation }) {

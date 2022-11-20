@@ -5,13 +5,13 @@ import { StyleSheet, Text, Alert, TouchableOpacity } from "react-native";
 import { useCameraDevices } from "react-native-vision-camera";
 import { Camera } from "react-native-vision-camera";
 import { useScanBarcodes, BarcodeFormat } from "vision-camera-code-scanner";
-import { loadContracts } from "./utils/load-contracts";
-import cryptoConverter from "./utils/crypto-converter";
+import { loadContracts } from "../utils/load-contracts";
+import cryptoConverter from "../utils/crypto-converter";
 import axios from "axios";
 
 export default function App({ navigation }) {
-  const { user_contract, signer } = navigation.state.params;
-  const [verifier_contract, setVerifierContract] = useState(null);
+  const { user_contract, signer, verifier_contract } = navigation.state.params;
+  // const [verifier_contract, setVerifierContract] = useState(null);
   const [id, setId] = useState("");
 
   const [hasPermission, setHasPermission] = React.useState(false);
@@ -43,6 +43,7 @@ export default function App({ navigation }) {
         arr[6] +
         "\n";
       setId(id);
+      console.log(id);
     } catch (error) {
       console.log(error);
       Alert.alert("Cannot retrieve ID");
@@ -50,7 +51,7 @@ export default function App({ navigation }) {
   };
 
   const verifyId = async (data) => {
-    await loadContracts("AuthVerifier", setVerifierContract, signer);
+    // await loadContracts("AuthVerifier", setVerifierContract, signer);
     console.log("verifier contract", verifier_contract);
     const array = data.split("|");
     const api_url = array[0];
@@ -64,24 +65,25 @@ export default function App({ navigation }) {
         res = await verifier_contract.isAccountCreationVerifiable(address);
         if (res) {
           await retrieveId();
-          //todo call bank api
-          if (id != "") {
-            axios
-              .post(api_url, {
-                id: id,
-              })
-              .then(function (response) {
-                console.log(response.data);
-                if (response.data == "failed") {
-                  Alert.alert("Try Again");
-                } else {
-                  Alert.alert(`done`);
-                }
-              })
-              .catch(function (error) {
-                console.log(error);
-              });
-          }
+          console.log("here");
+
+          console.log("here");
+
+          axios
+            .post(api_url, {
+              id: id,
+            })
+            .then(function (response) {
+              console.log(response.data);
+              if (response.data == "failed") {
+                Alert.alert("Try Again");
+              } else {
+                Alert.alert(`done`);
+              }
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
         } else {
           Alert.alert("Verifier not registered for account creation");
         }
@@ -96,23 +98,22 @@ export default function App({ navigation }) {
         if (res) {
           await retrieveId();
           //todo call bank api
-          if (id) {
-            axios
-              .post(api_url, {
-                id: id,
-              })
-              .then(function (response) {
-                console.log(response.data);
-                if (response.data == "failed") {
-                  Alert.alert("Try Again");
-                } else {
-                  Alert.alert(`done`);
-                }
-              })
-              .catch(function (error) {
-                console.log(error);
-              });
-          }
+
+          axios
+            .post(api_url, {
+              id: id,
+            })
+            .then(function (response) {
+              console.log(response.data);
+              if (response.data == "failed") {
+                Alert.alert("Try Again");
+              } else {
+                Alert.alert(`done`);
+              }
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
         } else {
           Alert.alert("Verifier not registered for loan");
         }
@@ -126,23 +127,23 @@ export default function App({ navigation }) {
         res = await verifier_contract.isCardRequestVerifiable(address);
         if (res) {
           await retrieveId();
-          if (id) {
-            axios
-              .post(api_url, {
-                id: id,
-              })
-              .then(function (response) {
-                console.log(response.data);
-                if (response.data == "failed") {
-                  Alert.alert("Try Again");
-                } else {
-                  Alert.alert(`done`);
-                }
-              })
-              .catch(function (error) {
-                console.log(error);
-              });
-          }
+
+          axios
+            .post(api_url, {
+              id: id,
+            })
+            .then(function (response) {
+              console.log(response.data);
+              if (response.data == "failed") {
+                Alert.alert("Try Again");
+              } else {
+                Alert.alert(`done`);
+              }
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+
           //todo call bank api
         } else {
           Alert.alert("Verifier not registered for cards");
@@ -169,7 +170,7 @@ export default function App({ navigation }) {
     (async () => {
       const status = await Camera.requestCameraPermission();
       setHasPermission(status === "authorized");
-      await loadContracts("AuthVerifier", setVerifierContract, signer);
+      // await loadContracts("AuthVerifier", setVerifierContract, signer);
     })();
   }, []);
 
